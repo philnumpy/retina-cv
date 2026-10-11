@@ -1,0 +1,18 @@
+# FIVES vessel segmentation: attention_unet, green input. Images are 2048x2048; the network works at
+# work_size and probabilities are upsampled back to 2048 for evaluation against the native masks.
+name: fives_attunet_green
+dataset: fives
+arch: attention_unet
+input: green
+loss: dice_bce
+work_size: 1024
+patch: 256
+patches_per_epoch: 4000
+batch_size: 16
+eval_batch: 32
+epochs: 40
+patience: 10
+lr: 1.0e-3
+weight_decay: 1.0e-4
+seed: 0
+workers: 8

@@ -1,0 +1,19 @@
+# Tested with Python 3.12, CUDA 12.1
+torch==2.5.1
+torchvision==0.20.1
+timm==1.0.28
+segmentation-models-pytorch==0.5.0
+albumentations==2.0.8
+opencv-python-headless
+numpy
+scipy
+scikit-learn
+pandas
+matplotlib
+pillow
+pyyaml
+onnx==1.23.2
+onnxruntime-gpu==1.22.0   # CUDA 12 / cuDNN 9 build; use `onnxruntime` on CPU-only machines
+thop
+grad-cam
+kaggle

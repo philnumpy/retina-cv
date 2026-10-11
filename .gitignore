@@ -1,0 +1,11 @@
+data/raw/
+data/processed/
+runs/
+logs/
+__pycache__/
+*.pyc
+*.onnx
+*.pt
+*.pth
+kaggle.json
+.ipynb_checkpoints/

@@ -1,0 +1,16 @@
+# DRIVE vessel segmentation: unet, green input, dice_focal loss
+name: drive_unet_green_focal
+dataset: drive
+arch: unet
+input: green          # green = CLAHE green channel (1 ch) | rgb = CLAHE on lightness (3 ch)
+loss: dice_focal
+patch: 64             # training patch and sliding-window size (stride = patch / 2 at inference)
+patches_per_epoch: 6400
+batch_size: 64
+eval_batch: 256
+epochs: 60
+patience: 15          # early stopping on validation Dice
+lr: 1.0e-3
+weight_decay: 1.0e-4
+seed: 0
+workers: 8
