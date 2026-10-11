@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 import numpy as np
-from scipy.optimize import minimize
+from scipy.optimize import minimize, minimize_scalar
 from sklearn.metrics import (accuracy_score, classification_report, cohen_kappa_score, confusion_matrix, f1_score,
                              roc_auc_score, roc_curve)
 
@@ -109,12 +109,12 @@ def softmax(logits: np.ndarray, temperature: float = 1.0) -> np.ndarray:
 
 
 def fit_temperature(logits: np.ndarray, labels: np.ndarray) -> float:
-    """Temperature scaling: one scalar T minimising validation NLL."""
-    def nll(t: np.ndarray) -> float:
-        p = softmax(logits, float(np.exp(t[0])))
+    """Temperature scaling: one scalar T in [0.05, 20] minimising validation NLL."""
+    def nll(log_t: float) -> float:
+        p = softmax(logits, float(np.exp(log_t)))
         return float(-np.log(p[np.arange(len(labels)), labels] + 1e-12).mean())
 
-    return float(np.exp(minimize(nll, x0=[0.0], method="Nelder-Mead").x[0]))
+    return float(np.exp(minimize_scalar(nll, bounds=(np.log(0.05), np.log(20.0)), method="bounded").x))
 
 
 def scores_to_grades(scores: np.ndarray, thresholds: np.ndarray) -> np.ndarray:

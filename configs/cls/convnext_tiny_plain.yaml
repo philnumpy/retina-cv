@@ -1,0 +1,15 @@
+# APTOS 2019 DR grading: convnext_tiny, plain preprocessing, classification head
+name: convnext_tiny_plain
+arch: convnext_tiny
+variant: plain           # plain = crop + resize | ben = + Ben Graham local-colour normalisation
+head: classification   # classification (5 logits, class-weighted CE) | regression (1 score, thresholds tuned on val)
+image_size: 512
+batch_size: 16
+epochs: 30
+patience: 8           # early stopping on validation QWK
+lr: 1.0e-4
+weight_decay: 0.01
+drop_rate: 0.2
+drop_path_rate: 0.1
+seed: 0
+workers: 10

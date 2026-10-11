@@ -1,0 +1,15 @@
+# APTOS 2019 DR grading: efficientnet_b0, plain preprocessing, regression head
+name: effnet_b0_plain_reg
+arch: efficientnet_b0
+variant: plain           # plain = crop + resize | ben = + Ben Graham local-colour normalisation
+head: regression   # classification (5 logits, class-weighted CE) | regression (1 score, thresholds tuned on val)
+image_size: 512
+batch_size: 24
+epochs: 30
+patience: 8           # early stopping on validation QWK
+lr: 5.0e-4
+weight_decay: 0.01
+drop_rate: 0.2
+drop_path_rate: 0.1
+seed: 0
+workers: 10

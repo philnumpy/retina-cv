@@ -14,6 +14,6 @@ retry() {  # the campus DNS drops out now and then, so retry a few times
   && unzip -q -o $RAW/drive/*.zip -d $RAW/drive && rm $RAW/drive/*.zip; }
 [ -n "$(ls $RAW/fives | grep -v -e rar -e log)" ] || { retry kaggle datasets download -d prashantdixit07/fives-a-fundus-image -p $RAW/fives \
   && unzip -q -o $RAW/fives/*.zip -d $RAW/fives && rm $RAW/fives/*.zip; }
-[ -f $RAW/aptos/train.csv ] || { retry kaggle competitions download -c aptos2019-blindness-detection -p $RAW/aptos \
+[ -d $RAW/aptos/train_images ] || { retry kaggle competitions download -c aptos2019-blindness-detection -p $RAW/aptos \
   && unzip -q -o $RAW/aptos/*.zip 'train.csv' 'train_images/*' -d $RAW/aptos && rm $RAW/aptos/*.zip; }
 echo "download finished"; du -sh $RAW/*

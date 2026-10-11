@@ -33,10 +33,10 @@ def main() -> None:
     model.eval()
 
     split = load_split()
-    test_df = split[split.split == "test"].reset_index(drop=True)
     saved = np.load(res_dir / "test_predictions.npz", allow_pickle=True)  # written by eval_cls
     y_true, y_pred = saved["y_true"], saved["y_pred"]
-    assert list(saved["ids"]) == test_df["id_code"].tolist()
+    test_df = split[split.split == "test"].set_index("id_code").loc[list(saved["ids"])].reset_index()
+    assert (test_df["diagnosis"].to_numpy() == y_true).all()
 
     # 8 correct (covering every grade where possible) + 8 incorrect, picked with a fixed seed
     rng = np.random.default_rng(0)
