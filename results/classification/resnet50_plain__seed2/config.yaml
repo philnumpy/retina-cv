@@ -1,0 +1,15 @@
+name: resnet50_plain
+arch: resnet50
+variant: plain
+head: classification
+image_size: 512
+batch_size: 24
+epochs: 30
+patience: 8
+lr: 0.0003
+weight_decay: 0.01
+drop_rate: 0.2
+drop_path_rate: 0.1
+seed: 2
+workers: 10
+run_name: resnet50_plain__seed2

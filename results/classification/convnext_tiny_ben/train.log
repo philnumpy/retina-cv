@@ -1,0 +1,20 @@
+01:16:04 | train: n = 2442 | class counts [1257, 237, 645, 118, 185]
+01:16:04 | val: n = 523 | class counts [269, 50, 138, 26, 40]
+01:16:05 | convnext_tiny | head classification | 27.82 M parameters | class weights [0.195, 1.032, 0.379, 2.072, 1.322]
+01:16:40 | epoch   1/30 | train loss 1.3836 acc 0.5563 qwk 0.5672 | val loss 1.0752 acc 0.6367 qwk 0.7708 *
+01:17:17 | epoch   2/30 | train loss 1.1197 acc 0.6649 qwk 0.7719 | val loss 1.0211 acc 0.7629 qwk 0.8527 *
+01:17:52 | epoch   3/30 | train loss 1.0522 acc 0.6875 qwk 0.7975 | val loss 1.0309 acc 0.7323 qwk 0.7921
+01:18:28 | epoch   4/30 | train loss 0.9548 acc 0.7278 qwk 0.8348 | val loss 0.7831 acc 0.8069 qwk 0.8796 *
+01:19:03 | epoch   5/30 | train loss 0.9217 acc 0.7352 qwk 0.8264 | val loss 1.0173 acc 0.7438 qwk 0.8328
+01:19:37 | epoch   6/30 | train loss 0.8729 acc 0.7615 qwk 0.8543 | val loss 0.9061 acc 0.7514 qwk 0.8351
+01:20:13 | epoch   7/30 | train loss 0.8405 acc 0.7714 qwk 0.8606 | val loss 0.8612 acc 0.8069 qwk 0.9012 *
+01:20:47 | epoch   8/30 | train loss 0.8172 acc 0.7837 qwk 0.8576 | val loss 1.0815 acc 0.7706 qwk 0.8353
+01:21:21 | epoch   9/30 | train loss 0.7663 acc 0.7985 qwk 0.8805 | val loss 0.9150 acc 0.7113 qwk 0.7975
+01:21:55 | epoch  10/30 | train loss 0.7241 acc 0.8187 qwk 0.8967 | val loss 1.3509 acc 0.7266 qwk 0.8110
+01:22:30 | epoch  11/30 | train loss 0.7067 acc 0.8059 qwk 0.8926 | val loss 1.0466 acc 0.7897 qwk 0.8638
+01:23:04 | epoch  12/30 | train loss 0.6743 acc 0.8281 qwk 0.9054 | val loss 0.7340 acc 0.7992 qwk 0.8749
+01:23:38 | epoch  13/30 | train loss 0.6102 acc 0.8409 qwk 0.9169 | val loss 0.8830 acc 0.8107 qwk 0.8943
+01:24:12 | epoch  14/30 | train loss 0.6169 acc 0.8396 qwk 0.9138 | val loss 0.8915 acc 0.8394 qwk 0.8969
+01:24:46 | epoch  15/30 | train loss 0.5810 acc 0.8565 qwk 0.9237 | val loss 0.8431 acc 0.8126 qwk 0.8817
+01:24:46 | early stopping: no validation QWK improvement for 8 epochs
+01:24:46 | done: best val QWK 0.9012 at epoch 7 | 8.7 min

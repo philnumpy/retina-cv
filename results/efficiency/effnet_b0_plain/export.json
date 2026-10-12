@@ -1,0 +1,22 @@
+{
+  "run": "effnet_b0_plain",
+  "task": "cls",
+  "arch": "efficientnet_b0",
+  "input_shape": [
+    3,
+    512,
+    512
+  ],
+  "parameters": 4013953,
+  "parameters_M": 4.013953,
+  "gmacs": 2.006683648,
+  "onnx_file_mb": 16.030488,
+  "onnx_max_abs_diff": 8.630752563476562e-05,
+  "onnx_output_range": [
+    -7.7058024406433105,
+    18.331937789916992
+  ],
+  "onnx_decision_agreement": 1.0,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/effnet_b0_plain.onnx"
+}

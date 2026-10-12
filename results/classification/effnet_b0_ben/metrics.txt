@@ -1,0 +1,24 @@
+[effnet_b0_ben] test metrics (n = 524)
+------------------------------------
+qwk                           0.9113
+accuracy                      0.8454
+macro_f1                      0.6818
+referable_auc                 0.9836
+referable_sensitivity         0.9113
+referable_specificity         0.9439
+ece                           0.1185
+ece_temperature_scaled        0.0394
+temperature                   4.4105
+macro_ovr_auc                 0.9538
+
+              precision    recall  f1-score   support
+
+           0     0.9890    0.9963    0.9926       270
+           1     0.6531    0.6275    0.6400        51
+           2     0.7333    0.7971    0.7639       138
+           3     0.4211    0.3200    0.3636        25
+           4     0.7059    0.6000    0.6486        40
+
+    accuracy                         0.8454       524
+   macro avg     0.7005    0.6682    0.6818       524
+weighted avg     0.8402    0.8454    0.8418       524

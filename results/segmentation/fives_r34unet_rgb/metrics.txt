@@ -1,0 +1,14 @@
+[fives_r34unet_rgb] test metrics (inside FOV, 200 images)
+---------------------------------
+threshold                  0.5891
+dice                       0.9168
+iou                        0.8463
+sensitivity                0.9037
+specificity                0.9930
+precision                  0.9302
+accuracy                   0.9846
+auc_roc                    0.9942
+auc_pr                     0.9691
+dice_per_image_mean        0.8976
+density_pearson_r          0.9854
+full_frame_dice            0.9195

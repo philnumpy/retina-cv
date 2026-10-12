@@ -1,0 +1,2 @@
+12:43:02 | threshold chosen on validation: 0.3721 (val pooled Dice 0.7781)
+12:43:04 | saved metrics and figures to /DATA/b23_vibhav_garg/cv/retina-cv/results/segmentation/drive_unet_green

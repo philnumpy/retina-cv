@@ -1,0 +1,14 @@
+[fives_unet_green_native] test metrics (inside FOV, 200 images)
+---------------------------------
+threshold                  0.4539
+dice                       0.9129
+iou                        0.8398
+sensitivity                0.9054
+specificity                0.9919
+precision                  0.9205
+accuracy                   0.9837
+auc_roc                    0.9932
+auc_pr                     0.9658
+dice_per_image_mean        0.8928
+density_pearson_r          0.9804
+full_frame_dice            0.9145

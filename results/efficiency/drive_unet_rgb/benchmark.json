@@ -1,0 +1,53 @@
+{
+  "run": "drive_unet_rgb",
+  "task": "seg",
+  "arch": "unet",
+  "input_shape": [
+    3,
+    608,
+    576
+  ],
+  "throughput_batch": 8,
+  "cpu_threads": 8,
+  "onnxruntime": "1.22.0",
+  "env": {
+    "git_commit": "97fd3d61e4bcda9ec2fa4cd3b7403f18da40d6ce-dirty",
+    "python": "3.12.13",
+    "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "gpu": "NVIDIA RTX A5000",
+    "numpy": "2.5.2",
+    "argv": "/DATA/b23_vibhav_garg/cv/retina-cv/src/benchmark.py --task seg --config configs/seg/drive_unet_rgb.yaml"
+  },
+  "results": [
+    {
+      "backend": "PyTorch",
+      "device": "cpu",
+      "p50_ms": 393.9603427425027,
+      "p95_ms": 414.6444487385452,
+      "throughput_img_s": 2.0083246199047444
+    },
+    {
+      "backend": "ONNX Runtime",
+      "device": "cpu",
+      "p50_ms": 199.52674210071564,
+      "p95_ms": 205.19381538033485,
+      "throughput_img_s": 3.104086318280156
+    },
+    {
+      "backend": "PyTorch",
+      "device": "cuda",
+      "p50_ms": 9.535355493426323,
+      "p95_ms": 9.549232199788094,
+      "throughput_img_s": 121.78180402104746
+    },
+    {
+      "backend": "ONNX Runtime",
+      "device": "cuda",
+      "p50_ms": 8.838689886033535,
+      "p95_ms": 8.985047973692417,
+      "throughput_img_s": 122.71892801300014
+    }
+  ]
+}

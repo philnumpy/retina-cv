@@ -1,0 +1,24 @@
+00:03:22 | train {'n': 16, 'shape': [1, 584, 565], 'vessel_fraction_in_fov': 0.12470261159704099} | val {'n': 4, 'shape': [1, 584, 565], 'vessel_fraction_in_fov': 0.12814463431025097}
+00:03:24 | unet_resnet34 | 24.43 M parameters | device cuda
+00:03:27 | epoch   1/60 | train loss 1.5054 dice 0.3022 | val loss 1.2978 dice 0.5046 *
+00:03:29 | epoch   2/60 | train loss 1.0415 dice 0.6031 | val loss 0.8842 dice 0.6881 *
+00:03:32 | epoch   3/60 | train loss 0.6553 dice 0.7639 | val loss 0.6079 dice 0.7329 *
+00:03:35 | epoch   4/60 | train loss 0.4467 dice 0.7940 | val loss 0.4780 dice 0.7560 *
+00:03:38 | epoch   5/60 | train loss 0.3926 dice 0.7991 | val loss 0.4318 dice 0.7740 *
+00:03:40 | epoch   6/60 | train loss 0.3664 dice 0.8093 | val loss 0.4759 dice 0.7532
+00:03:42 | epoch   7/60 | train loss 0.3552 dice 0.8136 | val loss 0.4647 dice 0.7569
+00:03:44 | epoch   8/60 | train loss 0.3520 dice 0.8147 | val loss 0.4948 dice 0.7542
+00:03:47 | epoch   9/60 | train loss 0.3588 dice 0.8112 | val loss 0.4853 dice 0.7548
+00:03:49 | epoch  10/60 | train loss 0.3475 dice 0.8156 | val loss 0.4745 dice 0.7558
+00:03:51 | epoch  11/60 | train loss 0.3379 dice 0.8224 | val loss 0.4477 dice 0.7672
+00:03:53 | epoch  12/60 | train loss 0.3487 dice 0.8162 | val loss 0.4550 dice 0.7647
+00:03:55 | epoch  13/60 | train loss 0.3514 dice 0.8141 | val loss 0.4879 dice 0.7526
+00:03:58 | epoch  14/60 | train loss 0.3474 dice 0.8158 | val loss 0.4440 dice 0.7669
+00:04:00 | epoch  15/60 | train loss 0.3381 dice 0.8200 | val loss 0.4732 dice 0.7597
+00:04:02 | epoch  16/60 | train loss 0.3344 dice 0.8228 | val loss 0.4760 dice 0.7609
+00:04:04 | epoch  17/60 | train loss 0.3352 dice 0.8221 | val loss 0.4947 dice 0.7576
+00:04:06 | epoch  18/60 | train loss 0.3343 dice 0.8223 | val loss 0.4589 dice 0.7650
+00:04:09 | epoch  19/60 | train loss 0.3265 dice 0.8273 | val loss 0.4723 dice 0.7593
+00:04:11 | epoch  20/60 | train loss 0.3294 dice 0.8249 | val loss 0.4873 dice 0.7590
+00:04:11 | early stopping: no validation improvement for 15 epochs
+00:04:11 | done: best val Dice 0.7740 at epoch 5 | 0.8 min

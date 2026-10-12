@@ -1,0 +1,27 @@
+23:41:05 | train {'n': 16, 'shape': [1, 584, 565], 'vessel_fraction_in_fov': 0.12470261159704099} | val {'n': 4, 'shape': [1, 584, 565], 'vessel_fraction_in_fov': 0.12814463431025097}
+23:41:05 | unet | 7.76 M parameters | device cuda
+23:41:08 | epoch   1/60 | train loss 1.2291 dice 0.5448 | val loss 1.0666 dice 0.6604 *
+23:41:10 | epoch   2/60 | train loss 0.9680 dice 0.7393 | val loss 0.9362 dice 0.7155 *
+23:41:12 | epoch   3/60 | train loss 0.8076 dice 0.7733 | val loss 0.7510 dice 0.7420 *
+23:41:14 | epoch   4/60 | train loss 0.6096 dice 0.7947 | val loss 0.5883 dice 0.7517 *
+23:41:16 | epoch   5/60 | train loss 0.4681 dice 0.8026 | val loss 0.5251 dice 0.7420
+23:41:18 | epoch   6/60 | train loss 0.4030 dice 0.8071 | val loss 0.4994 dice 0.7451
+23:41:20 | epoch   7/60 | train loss 0.3751 dice 0.8112 | val loss 0.4682 dice 0.7570 *
+23:41:22 | epoch   8/60 | train loss 0.3621 dice 0.8138 | val loss 0.4200 dice 0.7754 *
+23:41:24 | epoch   9/60 | train loss 0.3506 dice 0.8166 | val loss 0.4770 dice 0.7520
+23:41:26 | epoch  10/60 | train loss 0.3458 dice 0.8183 | val loss 0.4584 dice 0.7632
+23:41:28 | epoch  11/60 | train loss 0.3386 dice 0.8227 | val loss 0.4546 dice 0.7597
+23:41:30 | epoch  12/60 | train loss 0.3371 dice 0.8226 | val loss 0.4598 dice 0.7635
+23:41:31 | epoch  13/60 | train loss 0.3364 dice 0.8231 | val loss 0.4527 dice 0.7615
+23:41:33 | epoch  14/60 | train loss 0.3355 dice 0.8222 | val loss 0.4616 dice 0.7634
+23:41:35 | epoch  15/60 | train loss 0.3324 dice 0.8234 | val loss 0.4715 dice 0.7593
+23:41:37 | epoch  16/60 | train loss 0.3303 dice 0.8257 | val loss 0.4673 dice 0.7629
+23:41:39 | epoch  17/60 | train loss 0.3277 dice 0.8256 | val loss 0.4454 dice 0.7664
+23:41:41 | epoch  18/60 | train loss 0.3305 dice 0.8250 | val loss 0.4603 dice 0.7646
+23:41:42 | epoch  19/60 | train loss 0.3274 dice 0.8268 | val loss 0.4548 dice 0.7632
+23:41:44 | epoch  20/60 | train loss 0.3230 dice 0.8293 | val loss 0.4514 dice 0.7654
+23:41:46 | epoch  21/60 | train loss 0.3193 dice 0.8314 | val loss 0.4506 dice 0.7659
+23:41:48 | epoch  22/60 | train loss 0.3221 dice 0.8287 | val loss 0.4717 dice 0.7652
+23:41:50 | epoch  23/60 | train loss 0.3207 dice 0.8303 | val loss 0.4487 dice 0.7658
+23:41:50 | early stopping: no validation improvement for 15 epochs
+23:41:50 | done: best val Dice 0.7754 at epoch 8 | 0.7 min

@@ -1,0 +1,2 @@
+01:40:44 | threshold chosen on validation: 0.5684 (val pooled Dice 0.9343)
+01:41:46 | saved metrics and figures to /DATA/b23_vibhav_garg/cv/retina-cv/results/segmentation/fives_attunet_green__seed2

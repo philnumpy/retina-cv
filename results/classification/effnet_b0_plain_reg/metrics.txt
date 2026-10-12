@@ -1,0 +1,21 @@
+[effnet_b0_plain_reg] test metrics (n = 524)
+------------------------------------
+qwk                           0.9250
+accuracy                      0.7901
+macro_f1                      0.6482
+referable_auc                 0.9826
+referable_sensitivity         0.9212
+referable_specificity         0.9408
+qwk_default_thresholds        0.9199
+
+              precision    recall  f1-score   support
+
+           0     0.9961    0.9481    0.9715       270
+           1     0.5246    0.6275    0.5714        51
+           2     0.7739    0.6449    0.7036       138
+           3     0.2222    0.5600    0.3182        25
+           4     0.8214    0.5750    0.6765        40
+
+    accuracy                         0.7901       524
+   macro avg     0.6677    0.6711    0.6482       524
+weighted avg     0.8414    0.7901    0.8083       524

@@ -1,0 +1,22 @@
+{
+  "run": "fives_r34unet_rgb",
+  "task": "seg",
+  "arch": "unet_resnet34",
+  "input_shape": [
+    3,
+    1024,
+    1024
+  ],
+  "parameters": 24436369,
+  "parameters_M": 24.436369,
+  "gmacs": 125.596336128,
+  "onnx_file_mb": 97.744332,
+  "onnx_max_abs_diff": 4.1484832763671875e-05,
+  "onnx_output_range": [
+    -14.871246337890625,
+    13.635628700256348
+  ],
+  "onnx_decision_agreement": 1.0,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/fives_r34unet_rgb.onnx"
+}

@@ -1,0 +1,14 @@
+[drive_unet_green_focal__seed4] test metrics (inside FOV, 20 images)
+---------------------------------
+threshold                  0.4399
+dice                       0.8182
+iou                        0.6923
+sensitivity                0.8623
+specificity                0.9642
+precision                  0.7784
+accuracy                   0.9512
+auc_roc                    0.9783
+auc_pr                     0.9064
+dice_per_image_mean        0.8178
+density_pearson_r          0.4704
+full_frame_dice            0.8192

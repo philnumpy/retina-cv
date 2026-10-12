@@ -1,0 +1,22 @@
+{
+  "run": "resnet50_plain",
+  "task": "cls",
+  "arch": "resnet50",
+  "input_shape": [
+    3,
+    512,
+    512
+  ],
+  "parameters": 23518277,
+  "parameters_M": 23.518277,
+  "gmacs": 21.585997824,
+  "onnx_file_mb": 93.991223,
+  "onnx_max_abs_diff": 2.384185791015625e-05,
+  "onnx_output_range": [
+    -11.454573631286621,
+    6.632593154907227
+  ],
+  "onnx_decision_agreement": 1.0,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/resnet50_plain.onnx"
+}

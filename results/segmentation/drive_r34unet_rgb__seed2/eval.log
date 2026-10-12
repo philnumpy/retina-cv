@@ -1,0 +1,2 @@
+12:45:49 | threshold chosen on validation: 0.3257 (val pooled Dice 0.7767)
+12:45:52 | saved metrics and figures to /DATA/b23_vibhav_garg/cv/retina-cv/results/segmentation/drive_r34unet_rgb__seed2

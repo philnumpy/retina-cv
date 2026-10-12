@@ -1,0 +1,22 @@
+{
+  "run": "drive_attunet_green",
+  "task": "seg",
+  "arch": "attention_unet",
+  "input_shape": [
+    1,
+    608,
+    576
+  ],
+  "parameters": 7850717,
+  "parameters_M": 7.850717,
+  "gmacs": 74.783175552,
+  "onnx_file_mb": 31.40447,
+  "onnx_max_abs_diff": 1.621246337890625e-05,
+  "onnx_output_range": [
+    -8.170296669006348,
+    12.781890869140625
+  ],
+  "onnx_decision_agreement": 1.0,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/drive_attunet_green.onnx"
+}

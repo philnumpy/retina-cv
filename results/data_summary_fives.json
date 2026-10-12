@@ -1,0 +1,35 @@
+{
+  "dataset": "FIVES",
+  "train": {
+    "images": 600,
+    "image_mask_pairs": 600,
+    "resolutions_hw": {
+      "(2048, 2048)": 600
+    },
+    "category_counts": {
+      "A": 150,
+      "D": 150,
+      "G": 150,
+      "N": 150
+    },
+    "vessel_fraction_in_fov_mean": 0.09768800842083403
+  },
+  "test": {
+    "images": 200,
+    "image_mask_pairs": 200,
+    "resolutions_hw": {
+      "(2048, 2048)": 200
+    },
+    "category_counts": {
+      "A": 50,
+      "D": 50,
+      "G": 50,
+      "N": 50
+    },
+    "vessel_fraction_in_fov_mean": 0.09401860233634121
+  },
+  "split": {
+    "train": 540,
+    "val": 60
+  }
+}

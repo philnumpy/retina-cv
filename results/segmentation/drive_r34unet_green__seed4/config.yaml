@@ -1,0 +1,16 @@
+name: drive_r34unet_green
+dataset: drive
+arch: unet_resnet34
+input: green
+loss: dice_bce
+patch: 64
+patches_per_epoch: 6400
+batch_size: 64
+eval_batch: 256
+epochs: 60
+patience: 15
+lr: 0.001
+weight_decay: 0.0001
+seed: 4
+workers: 8
+run_name: drive_r34unet_green__seed4

@@ -96,9 +96,39 @@ def efficiency_table() -> str:
                     f"{get('PyTorch', 'cuda', 'throughput_img_s')} / {get('ONNX Runtime', 'cuda', 'throughput_img_s')} |")
     if not rows:
         return "_no benchmarks yet_\n"
-    head = ("| Run | Model | Input (C×H×W) | Params (M) | GMACs | ONNX max abs diff | PyTorch CPU p50 / p95 ms | ORT CPU p50 / p95 ms | "
+    head = ("| Run | Model | Input (C×H×W) | Params (M) | GMACs | ONNX max abs logit diff (real inputs) | PyTorch CPU p50 / p95 ms | ORT CPU p50 / p95 ms | "
             "PyTorch GPU p50 / p95 ms | ORT GPU p50 / p95 ms | CPU img/s (PyTorch / ORT) | GPU img/s (PyTorch / ORT) |")
     return "\n".join([head, "|" + "---|" * 12] + rows) + "\n"
+
+
+def best_by_val(groups: dict[str, list[dict]], key: str) -> tuple[str, list[dict]]:
+    """Pick the experiment with the highest mean validation score (never the test score)."""
+    name = max(groups, key=lambda n: np.mean([r[key] for r in groups[n]]))
+    return name, groups[name]
+
+
+def readme_summary(seg: dict[str, list[dict]], cls: dict[str, list[dict]]) -> str:
+    """Headline table for the README: per benchmark, the model selected on validation."""
+    lines = ["| Task | Selected model (by validation) | Seeds | Test result |", "|---|---|---|---|"]
+    for ds, label in (("drive", "Vessel segmentation, DRIVE (20 test images)"), ("fives", "Vessel segmentation, FIVES (200 test images)")):
+        sub = {k: v for k, v in seg.items() if v[0]["dataset"] == ds}
+        if sub:
+            name, runs = best_by_val(sub, "val_dice_at_threshold")
+            c = lambda k: cell(runs, k)[1]
+            lines.append(f"| {label} | `{name}` | {len(runs)} | Dice {c('dice')}, IoU {c('iou')}, sensitivity {c('sensitivity')}, "
+                         f"specificity {c('specificity')}, AUC-ROC {c('auc_roc')}, AUC-PR {c('auc_pr')} |")
+    if cls:
+        name, runs = best_by_val(cls, "val_qwk")
+        c = lambda k: cell(runs, k)[1]
+        lines.append(f"| DR grading, APTOS 2019 ({runs[0]['n_test']} test images) | `{name}` | {len(runs)} | QWK {c('qwk')}, accuracy {c('accuracy')}, "
+                     f"macro F1 {c('macro_f1')}; referable DR: AUC {c('referable_auc')}, sensitivity {c('referable_sensitivity')}, "
+                     f"specificity {c('referable_specificity')} |")
+        heads = {k: v for k, v in cls.items() if v[0]["head"] == "classification"}
+        name, runs = best_by_val(heads, "val_qwk")
+        c = lambda k: cell(runs, k)[1]
+        lines.append(f"| Same, best 5-class softmax model | `{name}` | {len(runs)} | QWK {c('qwk')}, accuracy {c('accuracy')}, macro F1 {c('macro_f1')}, "
+                     f"referable AUC {c('referable_auc')}, ECE {c('ece')} → {c('ece_temperature_scaled')} after temperature scaling |")
+    return "\n".join(lines) + "\n"
 
 
 def main() -> None:
@@ -145,6 +175,11 @@ def main() -> None:
     if disc.exists():
         out += [disc.read_text()]
     (ROOT / "RESULTS.md").write_text("\n".join(out))
+    readme = ROOT / "README.md"
+    if readme.exists() and "<!-- RESULTS:START -->" in readme.read_text():
+        text = readme.read_text()
+        a, b = text.index("<!-- RESULTS:START -->") + len("<!-- RESULTS:START -->"), text.index("<!-- RESULTS:END -->")
+        readme.write_text(text[:a] + "\n" + readme_summary(seg, cls) + text[b:])
     print("\n".join(out))
 
 

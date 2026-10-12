@@ -1,0 +1,21 @@
+[convnext_tiny_plain_reg__seed1] test metrics (n = 524)
+------------------------------------
+qwk                           0.9382
+accuracy                      0.8225
+macro_f1                      0.6897
+referable_auc                 0.9888
+referable_sensitivity         0.9409
+referable_specificity         0.9470
+qwk_default_thresholds        0.9398
+
+              precision    recall  f1-score   support
+
+           0     0.9962    0.9778    0.9869       270
+           1     0.6471    0.6471    0.6471        51
+           2     0.7845    0.6594    0.7165       138
+           3     0.2593    0.5600    0.3544        25
+           4     0.7632    0.7250    0.7436        40
+
+    accuracy                         0.8225       524
+   macro avg     0.6900    0.7139    0.6897       524
+weighted avg     0.8535    0.8225    0.8339       524

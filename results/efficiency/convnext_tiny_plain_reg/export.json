@@ -1,0 +1,22 @@
+{
+  "run": "convnext_tiny_plain_reg",
+  "task": "cls",
+  "arch": "convnext_tiny",
+  "input_shape": [
+    3,
+    512,
+    512
+  ],
+  "parameters": 27820897,
+  "parameters_M": 27.820897,
+  "gmacs": 23.27406336,
+  "onnx_file_mb": 111.3614,
+  "onnx_max_abs_diff": 1.1086463928222656e-05,
+  "onnx_output_range": [
+    0.00676419772207737,
+    3.7311182022094727
+  ],
+  "onnx_decision_agreement": 1.0,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/convnext_tiny_plain_reg.onnx"
+}

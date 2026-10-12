@@ -1,0 +1,24 @@
+[resnet50_plain] test metrics (n = 524)
+------------------------------------
+qwk                           0.9322
+accuracy                      0.8416
+macro_f1                      0.7091
+referable_auc                 0.9863
+referable_sensitivity         0.8621
+referable_specificity         0.9720
+ece                           0.0683
+ece_temperature_scaled        0.0491
+temperature                   1.5572
+macro_ovr_auc                 0.9501
+
+              precision    recall  f1-score   support
+
+           0     0.9889    0.9926    0.9908       270
+           1     0.5942    0.8039    0.6833        51
+           2     0.8544    0.6377    0.7303       138
+           3     0.3636    0.4800    0.4138        25
+           4     0.6667    0.8000    0.7273        40
+
+    accuracy                         0.8416       524
+   macro avg     0.6936    0.7428    0.7091       524
+weighted avg     0.8606    0.8416    0.8446       524

@@ -1,0 +1,53 @@
+{
+  "dataset": "APTOS 2019",
+  "labelled_images": 3662,
+  "images_found": 3662,
+  "class_counts_raw": [
+    1805,
+    370,
+    999,
+    193,
+    295
+  ],
+  "distinct_resolutions": 17,
+  "most_common_resolutions_hw": {
+    "(1050, 1050)": 974,
+    "(1736, 2416)": 638,
+    "(1958, 2588)": 533,
+    "(2136, 3216)": 410,
+    "(1536, 2048)": 351
+  },
+  "duplicate_groups": 129,
+  "images_in_duplicate_groups": 266,
+  "images_dropped_conflicting_labels": 77,
+  "images_after_dedup": 3489,
+  "split_class_counts": {
+    "train": [
+      1257,
+      237,
+      645,
+      118,
+      185
+    ],
+    "val": [
+      269,
+      50,
+      138,
+      26,
+      40
+    ],
+    "test": [
+      270,
+      51,
+      138,
+      25,
+      40
+    ]
+  },
+  "split_sizes": {
+    "train": 2442,
+    "test": 524,
+    "val": 523
+  },
+  "cached_size": 512
+}

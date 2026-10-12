@@ -1,0 +1,22 @@
+{
+  "run": "drive_unet_rgb",
+  "task": "seg",
+  "arch": "unet",
+  "input_shape": [
+    3,
+    608,
+    576
+  ],
+  "parameters": 7763041,
+  "parameters_M": 7.763041,
+  "gmacs": 73.454026752,
+  "onnx_file_mb": 31.050723,
+  "onnx_max_abs_diff": 1.2606382369995117e-05,
+  "onnx_output_range": [
+    -9.748418807983398,
+    16.509082794189453
+  ],
+  "onnx_decision_agreement": 0.9999992861385234,
+  "onnx_verified_on": "4 real test inputs",
+  "onnx_path": "runs/onnx/drive_unet_rgb.onnx"
+}

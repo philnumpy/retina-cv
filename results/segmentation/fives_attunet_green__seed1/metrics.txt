@@ -1,0 +1,14 @@
+[fives_attunet_green__seed1] test metrics (inside FOV, 200 images)
+---------------------------------
+threshold                  0.5652
+dice                       0.9131
+iou                        0.8401
+sensitivity                0.9041
+specificity                0.9921
+precision                  0.9222
+accuracy                   0.9838
+auc_roc                    0.9938
+auc_pr                     0.9674
+dice_per_image_mean        0.8935
+density_pearson_r          0.9846
+full_frame_dice            0.9166

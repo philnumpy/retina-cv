@@ -1,0 +1,2 @@
+23:54:17 | threshold chosen on validation: 0.5891 (val pooled Dice 0.9361)
+23:55:34 | saved metrics and figures to /DATA/b23_vibhav_garg/cv/retina-cv/results/segmentation/fives_r34unet_rgb

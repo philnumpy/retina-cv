@@ -1,0 +1,16 @@
+name: drive_unet_rgb
+dataset: drive
+arch: unet
+input: rgb
+loss: dice_bce
+patch: 64
+patches_per_epoch: 6400
+batch_size: 64
+eval_batch: 256
+epochs: 60
+patience: 15
+lr: 0.001
+weight_decay: 0.0001
+seed: 3
+workers: 8
+run_name: drive_unet_rgb__seed3

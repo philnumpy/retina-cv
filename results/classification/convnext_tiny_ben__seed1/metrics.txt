@@ -1,0 +1,24 @@
+[convnext_tiny_ben__seed1] test metrics (n = 524)
+------------------------------------
+qwk                           0.9288
+accuracy                      0.8626
+macro_f1                      0.7214
+referable_auc                 0.9884
+referable_sensitivity         0.9212
+referable_specificity         0.9688
+ece                           0.1035
+ece_temperature_scaled        0.0363
+temperature                   3.1311
+macro_ovr_auc                 0.9546
+
+              precision    recall  f1-score   support
+
+           0     0.9963    0.9926    0.9944       270
+           1     0.7069    0.8039    0.7523        51
+           2     0.8000    0.7826    0.7912       138
+           3     0.3548    0.4400    0.3929        25
+           4     0.7742    0.6000    0.6761        40
+
+    accuracy                         0.8626       524
+   macro avg     0.7264    0.7238    0.7214       524
+weighted avg     0.8689    0.8626    0.8643       524

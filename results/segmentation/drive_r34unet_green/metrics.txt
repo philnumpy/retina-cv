@@ -1,0 +1,14 @@
+[drive_r34unet_green] test metrics (inside FOV, 20 images)
+---------------------------------
+threshold                  0.4324
+dice                       0.8090
+iou                        0.6793
+sensitivity                0.8270
+specificity                0.9683
+precision                  0.7918
+accuracy                   0.9503
+auc_roc                    0.9722
+auc_pr                     0.8931
+dice_per_image_mean        0.8085
+density_pearson_r          0.4240
+full_frame_dice            0.8083

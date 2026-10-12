@@ -1,0 +1,26 @@
+{
+  "dataset": "DRIVE",
+  "source": "data/raw/drive/DRIVE",
+  "train": {
+    "images": 20,
+    "masks": 20,
+    "fov_masks": 20,
+    "resolutions_hw": {
+      "(584, 565)": 20
+    },
+    "vessel_fraction_in_fov_mean": 0.125391016139683
+  },
+  "test": {
+    "images": 20,
+    "masks": 20,
+    "fov_masks": 20,
+    "resolutions_hw": {
+      "(584, 565)": 20
+    },
+    "vessel_fraction_in_fov_mean": 0.12730248511433742
+  },
+  "split": {
+    "train": 16,
+    "val": 4
+  }
+}

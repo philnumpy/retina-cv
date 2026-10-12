@@ -1,0 +1,14 @@
+[drive_attunet_green__seed1] test metrics (inside FOV, 20 images)
+---------------------------------
+threshold                  0.3586
+dice                       0.8225
+iou                        0.6985
+sensitivity                0.8433
+specificity                0.9698
+precision                  0.8027
+accuracy                   0.9537
+auc_roc                    0.9787
+auc_pr                     0.9085
+dice_per_image_mean        0.8220
+density_pearson_r          0.3032
+full_frame_dice            0.8229
