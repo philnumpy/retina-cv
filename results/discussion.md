@@ -9,7 +9,7 @@ All statements below refer to the tables above. Models are ranked on validation;
 - **A plain U-Net is already at the level of the human second observer and above it.** On DRIVE every variant reaches test Dice 0.817–0.822 and AUC-ROC 0.975–0.979, against Dice 0.7891 for the second human observer scored on the same images.
 - **Attention gates gave the best validation Dice and the most stable results.** Attention U-Net (green) has the highest validation Dice (0.7822) and the smallest seed-to-seed spread on test Dice (± 0.0010 vs. ± 0.0054 for the plain U-Net). The mean test Dice gain over the plain U-Net (0.8218 vs. 0.8197) is smaller than the plain U-Net's own standard deviation, so it is a stability gain rather than a clear accuracy gain.
 - **Native resolution matters for the pretrained encoder on FIVES.** Training the ResNet34 U-Net on 512 px patches of the full 2048 px images raised test Dice from 0.9168 (1024 px working size, 3 seeds) to 0.9265 and sensitivity from 0.9040 to 0.9171 (1 seed). The native run is a single seed; the three 1024 px seeds differ by only ± 0.0002, so the gap is far outside seed noise.
-- **Vessel density on FIVES is recovered almost exactly** (Pearson r 0.984–0.986 between predicted and manual density over 200 images).
+- **Vessel density on FIVES is recovered almost exactly** (Pearson r 0.980–0.986 between predicted and manual density over 200 images).
 
 **Did not work, or made no difference**
 
@@ -34,13 +34,13 @@ All statements below refer to the tables above. Models are ranked on validation;
 
 - **Ben Graham preprocessing did not improve QWK** (ConvNeXt-Tiny 0.9311 with vs. 0.9331 without; EfficientNet-B0 0.9174 vs. 0.9175). It gave slightly higher accuracy for ConvNeXt-Tiny (0.8550 vs. 0.8454), within about one standard deviation.
 - **The regression head trades accuracy for ordinal consistency.** QWK is marginally higher (0.9337 vs. 0.9331) but accuracy (0.8181 vs. 0.8454) and macro F1 (0.6765 vs. 0.7091) are lower. Optimising the four cut points on validation gave no measurable gain over fixed 0.5 / 1.5 / 2.5 / 3.5 cut points (per-seed QWK with default cut points is stored as `qwk_default_thresholds`).
-- **Severe DR (grade 3) remains the weak class**: recall is 0.37–0.47 on only 25 test images, with most errors going to the neighbouring grades 2 and 4. Macro F1 (≈ 0.70) is far below accuracy (≈ 0.85) for that reason.
+- **Severe DR (grade 3) remains the weak class**: mean recall is 0.37–0.53 across the seven configurations on only 25 test images, with most errors going to the neighbouring grades 2 and 4. Macro F1 (≈ 0.70) is far below accuracy (≈ 0.85) for that reason.
 - **All models overfit**: validation loss rises after roughly epoch 10–15 while validation QWK plateaus, which is why checkpoints are selected on QWK with early stopping.
 - **Grad-CAM shows some attention on image borders and corners**, not only on lesions. APTOS images come from different cameras with different crops, so part of the measured performance is likely an acquisition shortcut.
 
 ### Efficiency
 
-- ONNX exports reproduce PyTorch logits to within 1e-5 – 9e-5 on real test images, with identical decisions on all checked inputs except 3 in 4.2 million pixels for one segmentation model.
+- ONNX exports reproduce PyTorch logits to within 1e-5 – 9e-5 on real test images, with identical decisions on all checked inputs except 1 pixel in 1.4 million for one segmentation model.
 - On CPU, ONNX Runtime was faster than PyTorch for every model at batch size 1 (1.1× for ConvNeXt-Tiny up to 2.0× for the U-Net and 1.9× for ResNet50). On GPU the two are close for the U-Nets and ResNet50, while ONNX Runtime is about 1.4× faster for ConvNeXt-Tiny and 2.0× for EfficientNet-B0.
 - EfficientNet-B0 needs 12× fewer GMACs than ConvNeXt-Tiny (2.0 vs. 23.3) and is 4× faster on CPU with ONNX Runtime (25.6 ms vs. 104.8 ms), for 1.6 points less QWK.
 - **Measurement conditions:** GPU timings were taken on an otherwise idle RTX A4000. CPU timings used 8 threads on a 32-core machine while two training jobs were running, so they are conservative and noisier than the GPU numbers. The native-resolution FIVES model was not benchmarked; the FIVES row is the 1024 px model.
