@@ -103,15 +103,16 @@ def efficiency_table() -> str:
 
 def main() -> None:
     seg, cls = load_runs("segmentation"), load_runs("classification")
-    seg_cols = [("dice", "Dice"), ("iou", "IoU"), ("sensitivity", "Sens."), ("specificity", "Spec."), ("accuracy", "Acc."),
+    seg_cols = [("val_dice_at_threshold", "Val Dice"), ("dice", "Dice"), ("iou", "IoU"), ("sensitivity", "Sens."), ("specificity", "Spec."), ("accuracy", "Acc."),
                 ("auc_roc", "AUC-ROC"), ("auc_pr", "AUC-PR"), ("threshold", "Thr."), ("density_pearson_r", "Density r"),
                 ("full_frame_dice", "Dice, single pass")]
-    seg_hi = {"dice", "iou", "sensitivity", "specificity", "accuracy", "auc_roc", "auc_pr", "density_pearson_r", "full_frame_dice"}
+    seg_hi = {"dice", "iou", "sensitivity", "specificity", "accuracy", "auc_roc", "auc_pr", "density_pearson_r", "full_frame_dice",
+              "val_dice_at_threshold"}
     seg_desc = lambda r: f"{r['arch']}, {r['input']}, {r['loss']}"
-    cls_cols = [("qwk", "QWK"), ("accuracy", "Acc."), ("macro_f1", "Macro F1"), ("referable_auc", "Ref. AUC"),
+    cls_cols = [("val_qwk", "Val QWK"), ("qwk", "QWK"), ("accuracy", "Acc."), ("macro_f1", "Macro F1"), ("referable_auc", "Ref. AUC"),
                 ("referable_sensitivity", "Ref. sens."), ("referable_specificity", "Ref. spec."), ("ece", "ECE"),
                 ("ece_temperature_scaled", "ECE (temp. scaled)")]
-    cls_hi = {"qwk", "accuracy", "macro_f1", "referable_auc", "referable_sensitivity", "referable_specificity"}
+    cls_hi = {"qwk", "accuracy", "macro_f1", "referable_auc", "referable_sensitivity", "referable_specificity", "val_qwk"}
     cls_desc = lambda r: f"{r['arch']}, {r['variant']}, {r['head']}"
 
     out = ["# Results", "",

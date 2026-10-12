@@ -1,0 +1,17 @@
+# FIVES at native resolution: no downsizing, 512 px patches cut from the 2048x2048 images.
+# Tests whether working at 1024 px (the other FIVES configs) costs accuracy on thin vessels.
+name: fives_r34unet_rgb_native
+dataset: fives
+arch: unet_resnet34
+input: rgb
+loss: dice_bce
+patch: 512
+patches_per_epoch: 3200
+batch_size: 8
+eval_batch: 16
+epochs: 40
+patience: 10
+lr: 1.0e-3
+weight_decay: 1.0e-4
+seed: 0
+workers: 8

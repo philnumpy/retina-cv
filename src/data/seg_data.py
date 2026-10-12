@@ -155,13 +155,15 @@ def frame_shape(h: int, w: int, multiple: int = 32) -> tuple[int, int]:
 
 @torch.no_grad()
 def full_frame_predict(model: torch.nn.Module, image: np.ndarray, device: torch.device) -> np.ndarray:
-    """Single forward pass over the whole (reflect-padded) image: the fast deployment path."""
+    """Single forward pass over the whole (reflect-padded) image: the fast deployment path.
+
+    Runs in FP32: half precision overflowed to NaN on whole frames for one ResNet34 checkpoint.
+    """
     model.eval()
     _, h, w = image.shape
     H, W = frame_shape(h, w)
     x = torch.from_numpy(np.pad(image, ((0, 0), (0, H - h), (0, W - w)), mode="reflect"))[None].to(device)
-    with torch.autocast(device_type=device.type, enabled=device.type == "cuda"):
-        prob = torch.sigmoid(model(x).float())[0, 0]
+    prob = torch.sigmoid(model(x))[0, 0]
     return prob[:h, :w].cpu().numpy()
 
 
