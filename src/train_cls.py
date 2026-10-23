@@ -53,8 +53,9 @@ def predict(model: torch.nn.Module, loader: DataLoader, device: torch.device, ma
 
 def make_loader(df: Any, cfg: dict[str, Any], train: bool) -> DataLoader:
     ds = AptosDataset(df, cfg["variant"], cfg["image_size"], train)
-    return DataLoader(ds, batch_size=cfg["batch_size"], shuffle=train, drop_last=train, num_workers=cfg.get("workers", 8),
-                      worker_init_fn=seed_worker, pin_memory=True, persistent_workers=train,
+    workers = cfg.get("workers", 8)
+    return DataLoader(ds, batch_size=cfg["batch_size"], shuffle=train, drop_last=train, num_workers=workers,
+                      worker_init_fn=seed_worker, pin_memory=True, persistent_workers=train and workers > 0,
                       generator=torch.Generator().manual_seed(cfg["seed"]))
 
 

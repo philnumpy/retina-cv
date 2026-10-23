@@ -52,9 +52,10 @@ def main() -> None:
     log.info(f"train {describe(train)} | val {describe(val)}")
 
     n_patches = 3 * cfg["batch_size"] if smoke else cfg["patches_per_epoch"]
+    workers = cfg.get("workers", 8)
     loader = DataLoader(PatchDataset(train, cfg["patch"], n_patches), batch_size=cfg["batch_size"], shuffle=False,
-                        num_workers=cfg.get("workers", 8), worker_init_fn=seed_worker, drop_last=True,
-                        persistent_workers=True, pin_memory=True)
+                        num_workers=workers, worker_init_fn=seed_worker, drop_last=True,
+                        persistent_workers=workers > 0, pin_memory=True)
     model = build_seg_model(cfg).to(device)
     log.info(f"{cfg['arch']} | {count_parameters(model) / 1e6:.2f} M parameters | device {device}")
 

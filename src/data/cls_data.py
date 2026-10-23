@@ -1,7 +1,6 @@
 """APTOS 2019 data: fundus cropping, Ben Graham normalisation, dataset and augmentations."""
 from __future__ import annotations
 
-from pathlib import Path
 
 import albumentations as A
 import cv2

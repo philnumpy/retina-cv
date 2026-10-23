@@ -32,7 +32,7 @@ def load_model(task: str, config: str, seed: int | None = None) -> tuple[torch.n
     ckpt = torch.load(ROOT / "runs" / folder / run / "best.pt", map_location="cpu", weights_only=False)
     if task == "seg":
         model = build_seg_model({**cfg, "encoder_weights": None})
-        # one whole frame per forward pass: DRIVE 584x565 padded to 592x576, FIVES at its working size
+        # one whole frame per forward pass: DRIVE 584x565 padded to 608x576, FIVES at its working size
         h, w = (cfg["work_size"],) * 2 if cfg.get("work_size") else frame_shape(584, 565)
         shape = (1 if cfg["input"] == "green" else 3, h, w)
     else:
