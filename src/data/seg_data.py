@@ -52,6 +52,13 @@ def preprocess(rgb: np.ndarray, fov: np.ndarray, mode: str) -> np.ndarray:
     return np.ascontiguousarray(x.transpose(2, 0, 1))
 
 
+def estimate_fov(rgb: np.ndarray, tol: int = 10) -> np.ndarray:
+    """Field of view for images that ship without a FOV mask: every pixel that is not near-black,
+    cleaned up morphologically. Returns a bool (H, W) mask."""
+    fov = (rgb.max(axis=2) > tol).astype(np.uint8)
+    return cv2.morphologyEx(fov, cv2.MORPH_OPEN, np.ones((15, 15), np.uint8)).astype(bool)
+
+
 def read_mask(path: Path) -> np.ndarray:
     return (cv2.imread(str(path), cv2.IMREAD_GRAYSCALE) > 127).astype(np.uint8)
 

@@ -8,38 +8,15 @@ Also reports parameter count and FLOPs. Output: results/efficiency/<run>/export.
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 from typing import Any
 
 import numpy as np
 import onnxruntime as ort
 import torch
-import yaml
 from thop import profile
 
-from src.data.seg_data import frame_shape
-from src.models.classifier import build_classifier
-from src.models.unet import build_seg_model
+from src.models.load import load_model
 from src.utils.common import ROOT, save_json
-
-
-def load_model(task: str, config: str, seed: int | None = None) -> tuple[torch.nn.Module, dict[str, Any], tuple[int, ...], str]:
-    """Rebuild a trained model from its config + checkpoint. Returns (model, cfg, example input shape, run name)."""
-    cfg = yaml.safe_load(open(config))
-    cfg.setdefault("name", Path(config).stem)
-    run = cfg["name"] if seed in (None, cfg.get("seed", 0)) else f"{cfg['name']}__seed{seed}"
-    folder = "segmentation" if task == "seg" else "classification"
-    ckpt = torch.load(ROOT / "runs" / folder / run / "best.pt", map_location="cpu", weights_only=False)
-    if task == "seg":
-        model = build_seg_model({**cfg, "encoder_weights": None})
-        # one whole frame per forward pass: DRIVE 584x565 padded to 608x576, FIVES at its working size
-        h, w = (cfg["work_size"],) * 2 if cfg.get("work_size") else frame_shape(584, 565)
-        shape = (1 if cfg["input"] == "green" else 3, h, w)
-    else:
-        model = build_classifier(cfg, pretrained=False)
-        shape = (3, cfg["image_size"], cfg["image_size"])
-    model.load_state_dict(ckpt["model"])
-    return model.eval(), cfg, shape, run
 
 
 def real_inputs(task: str, cfg: dict[str, Any], shape: tuple[int, ...], n: int = 4) -> torch.Tensor:
