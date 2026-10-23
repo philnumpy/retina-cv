@@ -103,6 +103,24 @@ python scripts/make_results.py        # rebuild RESULTS.md and the table above
 
 Approximate training time per run on one RTX A5000: DRIVE 1.5 min, FIVES at 1024 px 12–30 min, FIVES at native resolution 55–75 min, APTOS 10–25 min.
 
+## Predicting on your own images
+
+`src.predict` runs a trained model on any folder of fundus photographs (PNG, JPEG, TIFF or BMP); no dataset or split file is needed.
+
+```bash
+# vessel maps: <name>_prob.png, <name>_mask.png, <name>_overlay.png and predictions.csv (vessel density per image)
+python -m src.predict --task seg --config configs/seg/drive_attunet_green.yaml --input photos/ --output out/seg
+
+# DR grade per image in predictions.csv (class probabilities and referable-DR probability), optional Grad-CAM
+python -m src.predict --task cls --config configs/cls/convnext_tiny_ben.yaml --input photos/ --output out/cls --gradcam
+```
+
+- The checkpoint is read from `runs/<task>/<run>/best.pt`; `--checkpoint path/to/best.pt` loads one from elsewhere and `--seed k` picks another seed's run.
+- Values fitted on validation are reused from that run's `metrics.json`: the vessel threshold, the softmax temperature (so the probabilities are calibrated) and the regression cut points. Without it, 0.5, T = 1 and 0.5 / 1.5 / 2.5 / 3.5 are used.
+- **Segmentation rescales each image** so that its field of view (estimated from the non-black pixels) is as wide as in training: about 540 px for the DRIVE models, the working size for the FIVES models. Vessel width in pixels is what the network learned. Override with `--fov-diameter` if your photos have a very different field-of-view angle. Results are written back at the original resolution.
+- Grading applies the same crop, pad, resize and (for `ben` configs) Ben Graham normalisation as the training cache.
+- These are research models trained on public benchmarks; the outputs are not a diagnosis.
+
 ## Tests
 
 The test suite needs no datasets or GPU; it uses small synthetic images and also runs both training scripts end to end in `--smoke` mode. CI runs it, plus `ruff`, on every push and pull request.
@@ -118,8 +136,9 @@ ruff check src scripts tests
 ```
 configs/seg, configs/cls   one YAML per experiment
 src/data/                  prepare.py (verification, caching, splits), seg_data.py, cls_data.py
-src/models/                unet.py (U-Net, Attention U-Net, ResNet34 U-Net factory), classifier.py
+src/models/                unet.py (U-Net, Attention U-Net, ResNet34 U-Net factory), classifier.py, load.py
 src/train_seg.py, eval_seg.py, train_cls.py, eval_cls.py
+src/predict.py             inference on your own images
 src/explain.py             Grad-CAM
 src/export_onnx.py, benchmark.py
 src/utils/                 metrics.py, plots.py, common.py (seeding, config, logging)

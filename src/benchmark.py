@@ -17,7 +17,7 @@ import numpy as np
 import onnxruntime as ort
 import torch
 
-from src.export_onnx import load_model
+from src.models.load import load_model
 from src.utils import plots
 from src.utils.common import ROOT, environment, load_json, save_json
 

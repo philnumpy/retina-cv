@@ -35,6 +35,11 @@ def pad_to_square(rgb: np.ndarray) -> np.ndarray:
     return out
 
 
+def square_fundus(rgb: np.ndarray, size: int = 512) -> np.ndarray:
+    """Crop the black border, pad to a square and resize: the 'plain' cache that prepare.py writes."""
+    return cv2.resize(pad_to_square(crop_fundus(rgb)), (size, size), interpolation=cv2.INTER_AREA)
+
+
 def ben_graham(rgb: np.ndarray) -> np.ndarray:
     """Ben Graham's local-colour normalisation (Kaggle DR 2015 winner).
 

@@ -18,7 +18,8 @@ import pandas as pd
 from PIL import Image
 from sklearn.model_selection import train_test_split
 
-from src.data.cls_data import ben_graham, crop_fundus, pad_to_square
+from src.data.cls_data import ben_graham, square_fundus
+from src.data.seg_data import estimate_fov
 from src.utils.common import ROOT, save_json
 
 RAW, PROC, SPLITS = ROOT / "data" / "raw", ROOT / "data" / "processed", ROOT / "data" / "splits"
@@ -77,9 +78,7 @@ def _fives_one(args: tuple[Path, Path, Path, str]) -> tuple[tuple[int, int], flo
     img_path, mask_path, out, name = args
     img = cv2.imread(str(img_path))
     mask = (cv2.imread(str(mask_path), cv2.IMREAD_GRAYSCALE) > 127).astype(np.uint8) * 255
-    # FIVES ships no FOV masks: the FOV is every pixel that is not near-black, cleaned up morphologically
-    fov = (img.max(axis=2) > 10).astype(np.uint8)
-    fov = cv2.morphologyEx(fov, cv2.MORPH_OPEN, np.ones((15, 15), np.uint8)) * 255
+    fov = estimate_fov(img).astype(np.uint8) * 255  # FIVES ships no FOV masks
     cv2.imwrite(str(out / "images" / f"{name}.png"), img)
     cv2.imwrite(str(out / "masks" / f"{name}.png"), mask)
     cv2.imwrite(str(out / "fov" / f"{name}.png"), fov)
@@ -113,7 +112,7 @@ def _aptos_one(args: tuple[str, int]) -> tuple[str, tuple[int, int], str]:
     image_id, size = args
     bgr = cv2.imread(str(next(RAW.glob(f"aptos/**/train_images/{image_id}.png"))))
     rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
-    sq = cv2.resize(pad_to_square(crop_fundus(rgb)), (size, size), interpolation=cv2.INTER_AREA)
+    sq = square_fundus(rgb, size)
     cv2.imwrite(str(PROC / "aptos" / "plain" / f"{image_id}.jpg"), cv2.cvtColor(sq, cv2.COLOR_RGB2BGR), [cv2.IMWRITE_JPEG_QUALITY, 95])
     cv2.imwrite(str(PROC / "aptos" / "ben" / f"{image_id}.jpg"), cv2.cvtColor(ben_graham(sq).astype(np.uint8), cv2.COLOR_RGB2BGR),
                 [cv2.IMWRITE_JPEG_QUALITY, 95])
