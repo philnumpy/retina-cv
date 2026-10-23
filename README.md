@@ -103,6 +103,16 @@ python scripts/make_results.py        # rebuild RESULTS.md and the table above
 
 Approximate training time per run on one RTX A5000: DRIVE 1.5 min, FIVES at 1024 px 12–30 min, FIVES at native resolution 55–75 min, APTOS 10–25 min.
 
+## Tests
+
+The test suite needs no datasets or GPU; it uses small synthetic images and also runs both training scripts end to end in `--smoke` mode. CI runs it, plus `ruff`, on every push and pull request.
+
+```bash
+pip install pytest ruff
+pytest              # under a minute on CPU
+ruff check src scripts tests
+```
+
 ## Repository layout
 
 ```
@@ -113,6 +123,7 @@ src/train_seg.py, eval_seg.py, train_cls.py, eval_cls.py
 src/explain.py             Grad-CAM
 src/export_onnx.py, benchmark.py
 src/utils/                 metrics.py, plots.py, common.py (seeding, config, logging)
+tests/                     pytest suite (synthetic data, CPU only)
 scripts/                   download, run queues, make_results.py
 results/                   per-run metrics.json, figures, config, environment
 data/splits/               committed split files
